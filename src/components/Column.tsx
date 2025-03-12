@@ -9,6 +9,7 @@ interface ColumnProps {
   onDragOver: (e: React.DragEvent) => void;
   onDrop: (e: React.DragEvent, columnId: string) => void;
   onAddTask: (columnId: string) => void;
+  onDeleteTask: (taskId: string, columnId: string) => void;
 }
 
 const Column: React.FC<ColumnProps> = ({
@@ -17,6 +18,7 @@ const Column: React.FC<ColumnProps> = ({
   onDragOver,
   onDrop,
   onAddTask,
+  onDeleteTask,
 }) => {
   return (
     <div
@@ -36,6 +38,7 @@ const Column: React.FC<ColumnProps> = ({
             task={task}
             onDragStart={onDragStart}
             columnId={column.id}
+            onDeleteTask={onDeleteTask}
           />
         ))}
       </div>

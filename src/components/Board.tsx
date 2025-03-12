@@ -77,6 +77,18 @@ const Board: React.FC<BoardProps> = ({ initialBoard }) => {
     }
   };
 
+  const handleDeleteTask = (taskId: string, columnId: string) => {
+    const updatedBoard = { ...board };
+    const columnIndex = updatedBoard.columns.findIndex(col => col.id === columnId);
+    
+    if (columnIndex !== -1) {
+      updatedBoard.columns[columnIndex].tasks = updatedBoard.columns[columnIndex].tasks.filter(
+        task => task.id !== taskId
+      );
+      setBoard(updatedBoard);
+    }
+  };
+
   const handleAddColumn = () => {
     if (newColumnTitle.trim() === '') return;
     
@@ -110,6 +122,7 @@ const Board: React.FC<BoardProps> = ({ initialBoard }) => {
             onDragOver={handleDragOver}
             onDrop={handleDrop}
             onAddTask={handleAddTask}
+            onDeleteTask={handleDeleteTask}
           />
         ))}
         
